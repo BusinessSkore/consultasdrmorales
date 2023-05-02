@@ -56,23 +56,23 @@
     <div class="grayBox">
       <table style="width: 100%">
         <tr>
-          <td style="padding:0; margin: 0;">Subtotal:</td>
-          <td style="padding:0; margin: 0;">$</td>
-          <td style="padding:0; margin: 0;" class="der">
+          <td :style="this.trStyle1">Subtotal:</td>
+          <td :style="this.trStyle1">$</td>
+          <td :style="this.trStyle1" class="der">
             {{ formatNumber(this.$store.state.user.factura.subTot) }}
           </td>
         </tr>
         <tr>
-          <td style="padding:0; margin: 0;">ISR (10%):</td>
-          <td style="padding:0; margin: 0;">$</td>
-          <td style="padding:0; margin: 0;" class="der">
+          <td :style="this.trStyle">ISR (10%):</td>
+          <td :style="this.trStyle">$</td>
+          <td :style="this.trStyle" class="der">
             {{ formatNumber(this.$store.state.user.factura.isr) }}
           </td>
         </tr>
         <tr>
-          <td style="padding:0; margin: 0; font-weight: bold">TOTAL:</td>
-          <td style="padding:0; margin: 0; font-weight: bold">$</td>
-          <td style="padding:0; margin: 0; font-weight: bold" class="der">
+          <td :style="this.trStyle">TOTAL:</td>
+          <td :style="this.trStyle">$</td>
+          <td :style="this.trStyle" class="der">
             {{ formatNumber(this.$store.state.user.factura.total) }}
           </td>
         </tr>
@@ -134,7 +134,10 @@ export default defineComponent({
   name: "lotes-form",
   components: {},
   data() {
-    return {};
+    return {
+      trStyle: "color: rgb(217, 217, 217); padding:0; margin: 0;",
+      trStyle1: "padding:0; margin: 0;"
+    };
   },
 
   async mounted() {
@@ -186,7 +189,7 @@ export default defineComponent({
         let out = moment(dateValue).add(0, "days");
         return moment(out).format("yyyy-MM-DDTHH:mm");
       } else {
-        alert("formatting");
+        // alert("formatting");
         let out = moment(dateValue).add(0, "hours");
         return moment(out).format("D-MMMM-YYYY");
       }

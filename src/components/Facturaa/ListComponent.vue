@@ -1,25 +1,34 @@
 <template>
+  <!-- {{this.facturaas}} -->
   <table v-if="this.totales.facturaas" id="customers">
+    <!-- <th>Fecha</th> -->
     <th>Fecha</th>
-    <th>Aseguradora</th>
-    <th>Reclamos</th>
-    <th>Valor</th>
+    <th>NCF</th>
+    <th>Cliente</th>
+    <th>Sub Total</th>
+    <th>ISR</th>
+    <th>Total</th>
 
     <tr
-      @click="this.$router.push(`/facturaas/${facturaa._id}`)"
       v-for="(facturaa, index) in facturaas"
+      @click="goToFactPrint(facturaa)"
       :key="index"
     >
-      <td>{{ formatDate(facturaa.fechAutor, false) }}</td>
-      <td>{{ facturaa.nombARS }}</td>
-      <td class="der">{{ formatNumber(facturaa.cantTotal, false) }}</td>
-      <td class="der">{{ formatNumber(facturaa.montoTotal, true) }}</td>
+      <!-- <td>{{ formatDate(facturaa.fechaEmision, false) }}</td> -->
+      <td>{{ facturaa.fechaEmision }}</td>
+      <td>{{ facturaa.ncf }}</td>
+      <td>{{ facturaa.razSocRecep }}</td>
+      <td class="der">{{ formatNumber(facturaa.subTot, true) }}</td>
+      <td class="der">{{ formatNumber(facturaa.isr, true) }}</td>
+      <td class="der">{{ formatNumber(facturaa.total, true) }}</td>
     </tr>
     <tr>
       <td>Total: {{ formatNumber(this.totales.facturaas, false) }}</td>
       <td></td>
-      <td class="der">{{ formatNumber(this.totales.cantTotal, false) }}</td>
-      <td class="der">{{ formatNumber(this.totales.montoTotal, true) }}</td>
+      <td></td>
+      <td class="der">{{ formatNumber(this.totales.subTot, true) }}</td>
+      <td class="der">{{ formatNumber(this.totales.isr, true) }}</td>
+      <td class="der">{{ formatNumber(this.totales.total, true) }}</td>
     </tr>
   </table>
 
@@ -47,6 +56,10 @@ export default {
     this.fechaActual = new Date();
   },
   methods: {
+    goToFactPrint(facturaa: any) {
+      this.$store.state.user.factura = facturaa;
+      this.$router.push(`/facturaas2/print`);
+    },
     calcularEdad(date: any) {
       let years = 0;
       let edad = Math.floor(
@@ -192,12 +205,18 @@ export default {
     },
     valorTotal() {
       this.totales.facturaas = this.facturaas.length;
-      this.totales.cantTotal = this.facturaas.reduce(
-        (accum: any, item: any) => accum + item.cantTotal,
+      this.totales.subTot = this.facturaas.reduce(
+        (accum: any, item: any) => accum + parseFloat(item.subTot),
         0
       );
-      this.totales.montoTotal = this.facturaas.reduce(
-        (accum: any, item: any) => accum + item.montoTotal,
+
+      this.totales.isr = this.facturaas.reduce(
+        (accum: any, item: any) => accum + parseFloat(item.isr),
+        0
+      );
+
+      this.totales.total = this.facturaas.reduce(
+        (accum: any, item: any) => accum + parseFloat(item.total),
         0
       );
     },
