@@ -173,15 +173,15 @@ export default defineComponent({
         //console.error(error);
       }
       await this.toggleLoading();
-      // this.toPrint();
+      this.toPrint();
 
-      // if (this.$store.state.ids.length == 0) {
-      //   this.$router.push(`/recetas/${this.receta._id}`);
-      // } else {
-      //   this.$router.push(`/recetaslot/new`);
-      // }
+      if (this.$store.state.ids.length == 0) {
+        this.$router.push(`/recetas/${this.receta._id}`);
+      } else {
+        this.$router.push(`/recetaslot/new`);
+      }
 
-      // this.$router.push(`/recetas/${this.receta._id}`);
+      this.$router.push(`/recetas/${this.receta._id}`);
     },
 
     async handleUpdate() {
