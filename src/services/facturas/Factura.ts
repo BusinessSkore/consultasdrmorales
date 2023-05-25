@@ -2,6 +2,9 @@ import { Factura } from "@/interfaces/Factura";
 import { AxiosResponse } from "axios";
 import axios from "./axios";
 
+export const get = async (): Promise<AxiosResponse> =>
+  await axios.get("/get?rncEmisor=04900722440");
+
 export const create = async (factura: Factura): Promise<AxiosResponse> =>
   await axios.put("/create", factura);
 

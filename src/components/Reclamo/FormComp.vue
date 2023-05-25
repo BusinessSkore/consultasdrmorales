@@ -249,7 +249,7 @@
                       for="nombARS,"
                       >Aseguradora:</label
                     ><input
-                      disabled
+                      
                       id="nombARS"
                       type="nombARS"
                       v-model="reclamo.nombARS"
@@ -276,7 +276,7 @@
                       for="aut,"
                       >Monto Reclamado:</label
                     ><input
-                      disabled
+                      
                       id="aut"
                       type="aut"
                       v-model="reclamo.montRec"
@@ -463,12 +463,18 @@
             </button> -->
 
             <button
-              v-if="showDelete"
               class="btn btn-danger"
               @click.prevent="handleDelete()"
             >
               <i class="fas fa-trash-alt"></i> Eliminar
             </button>
+            <!-- <button
+              v-if="showDelete"
+              class="btn btn-danger"
+              @click.prevent="handleDelete()"
+            >
+              <i class="fas fa-trash-alt"></i> Eliminar
+            </button> -->
           </fieldset>
         </form>
       </div>
@@ -1617,6 +1623,7 @@ th {
   /* background: rgba(5, 24, 250, 0.1); */
   transition: all 500ms ease;
   overflow-y: scroll;
+  z-index: 100
 }
 
 .contenedor7 {

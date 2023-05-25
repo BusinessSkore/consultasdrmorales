@@ -81,7 +81,7 @@
                       </h4>
                     </div>
                     <div class="grid-fields">
-                      <div>
+                      <!-- <div>
                         <label
                           class="ta-l col-form-label col-form-label-sm"
                           for="desde"
@@ -106,7 +106,7 @@
                           v-model="criterio.hasta"
                           class="form-control"
                         />
-                      </div>
+                      </div> -->
                       <!-- <div>
                         <label
                           class="ta-l col-form-label col-form-label-sm"
@@ -191,6 +191,7 @@ import {
   getFacturaas,
   getServsByEsp,
 } from "@/services/expedientesclinicos/Facturaa";
+import { create, destroy, get } from "@/services/facturas/Factura";
 // import { getEspecialistas } from "@/services/expedientesclinicos/Especialista";
 import Pusher from "pusher-js";
 
@@ -359,9 +360,8 @@ export default {
 
     async loadFacturaas() {
       this.toggleLoading();
-      // this.criterio.hasta = this.criterio.desde;
       try {
-        const res = await getFacturaas(this.criterio);
+        const res = await get();
         this.facturaas = res.data;
         this.facturaasFiltradas = res.data;
       } catch (error) {

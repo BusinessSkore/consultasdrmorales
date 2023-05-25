@@ -55,7 +55,7 @@
       </div>
     </div>
     <div class="flex-container">
-      <div style="margin-right: 30px">
+      <div style="margin-right: 7.5px; left: 450px; position: absolute">
         <p style="font-size: 80%; text-align: left; font-weight : bold">
           Nombre:
         </p>
