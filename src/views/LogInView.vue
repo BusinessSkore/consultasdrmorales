@@ -37,7 +37,7 @@
                   <label
                     class="col-form-label col-form-label-sm mt-4"
                     for="password"
-                    >tupasswol</label
+                    >Contraseña</label
                   ><input
                     class="form-control"
                     type="password"
