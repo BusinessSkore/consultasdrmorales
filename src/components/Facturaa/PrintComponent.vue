@@ -56,7 +56,7 @@
     <div class="grayBox">
       <table style="width: 100%">
         <tr>
-          <td :style="this.trStyle1">Subtotal:</td>
+          <td :style="this.trStyle1">TOTAL:</td>
           <td :style="this.trStyle1">$</td>
           <td :style="this.trStyle1" class="der">
             {{ formatNumber(this.$store.state.user.factura.subTot) }}
